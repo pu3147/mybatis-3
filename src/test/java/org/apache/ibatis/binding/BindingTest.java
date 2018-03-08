@@ -82,8 +82,11 @@ public class BindingTest {
 
   @Test
   public void shouldSelectBlogWithPostsUsingSubSelect() throws Exception {
-    SqlSession session = sqlSessionFactory.openSession();
+    //TODO
+	//DefaultSqlSessionFactory
+	SqlSession session = sqlSessionFactory.openSession();
     try {
+      //DefaultSqlSession
       BoundBlogMapper mapper = session.getMapper(BoundBlogMapper.class);
       Blog b = mapper.selectBlogWithPostsUsingSubSelect(1);
       assertEquals(1, b.getId());
