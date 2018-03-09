@@ -17,8 +17,9 @@ package org.apache.ibatis.submitted.stringlist;
 
 import java.util.List;
 
-public interface Mapper {
-
-  List<User> getUsersAndGroups(Integer id);
-
+public interface Mapper
+{
+	
+	List<User> getUsersAndGroups(Integer id);
+	
 }

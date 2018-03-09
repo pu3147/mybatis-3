@@ -16,5 +16,6 @@
 
 package org.apache.ibatis.test;
 
-public interface EmbeddedPostgresqlTests extends SlowTests {
+public interface EmbeddedPostgresqlTests extends SlowTests
+{
 }

@@ -26,27 +26,29 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
-public class UnknownObjectTest {
-
-  private static SqlSessionFactory sqlSessionFactory;
-
-  @Test(expected=PersistenceException.class)
-  public void shouldFailBecauseThereIsAPropertyWithoutTypeHandler() throws Exception {
-    // create a SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/unknownobject/mybatis-config.xml");
-    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-    reader.close();
-
-    // populate in-memory database
-    SqlSession session = sqlSessionFactory.openSession();
-    Connection conn = session.getConnection();
-    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/unknownobject/CreateDB.sql");
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.runScript(reader);
-    conn.close();
-    reader.close();
-    session.close();
-  }
-
+public class UnknownObjectTest
+{
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@Test(expected = PersistenceException.class)
+	public void shouldFailBecauseThereIsAPropertyWithoutTypeHandler() throws Exception
+	{
+		// create a SqlSessionFactory
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/unknownobject/mybatis-config.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		reader.close();
+		
+		// populate in-memory database
+		SqlSession session = sqlSessionFactory.openSession();
+		Connection conn = session.getConnection();
+		reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/unknownobject/CreateDB.sql");
+		ScriptRunner runner = new ScriptRunner(conn);
+		runner.setLogWriter(null);
+		runner.runScript(reader);
+		conn.close();
+		reader.close();
+		session.close();
+	}
+	
 }

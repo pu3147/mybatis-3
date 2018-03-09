@@ -27,39 +27,47 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.util.List;
 
-public class PrimitiveResultTypeTest {
-
-  @BeforeClass
-  public static void setup() throws Exception {
-    SqlSession session = IbatisConfig.getSession();
-    Connection conn = session.getConnection();
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.setErrorLogWriter(null);
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/primitive_result_type/create.sql");
-    runner.runScript(reader);
-    conn.close();
-    reader.close();
-  }
-
-  @Test
-  public void shouldReturnProperPrimitiveType() {
-    List<Integer> codes = ProductDAO.selectProductCodes();
-    for (Object code : codes) {
-      assertTrue(code instanceof Integer);
-    }
-    List<Long> lcodes = ProductDAO.selectProductCodesL();
-    for (Object lcode : lcodes) {
-      assertTrue(!(lcode instanceof Integer));
-    }
-    List<BigDecimal> bcodes = ProductDAO.selectProductCodesB();
-    for (Object bcode : bcodes) {
-      assertTrue(bcode instanceof BigDecimal);
-    }
-  }
-  @Test
-  public void noErrorThrowOut(){
-      List<Product> products=ProductDAO.selectAllProducts();
-      assertTrue("should return 4 results", 4==products.size());
-  }
+public class PrimitiveResultTypeTest
+{
+	
+	@BeforeClass
+	public static void setup() throws Exception
+	{
+		SqlSession session = IbatisConfig.getSession();
+		Connection conn = session.getConnection();
+		ScriptRunner runner = new ScriptRunner(conn);
+		runner.setLogWriter(null);
+		runner.setErrorLogWriter(null);
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/primitive_result_type/create.sql");
+		runner.runScript(reader);
+		conn.close();
+		reader.close();
+	}
+	
+	@Test
+	public void shouldReturnProperPrimitiveType()
+	{
+		List<Integer> codes = ProductDAO.selectProductCodes();
+		for (Object code : codes)
+		{
+			assertTrue(code instanceof Integer);
+		}
+		List<Long> lcodes = ProductDAO.selectProductCodesL();
+		for (Object lcode : lcodes)
+		{
+			assertTrue(!(lcode instanceof Integer));
+		}
+		List<BigDecimal> bcodes = ProductDAO.selectProductCodesB();
+		for (Object bcode : bcodes)
+		{
+			assertTrue(bcode instanceof BigDecimal);
+		}
+	}
+	
+	@Test
+	public void noErrorThrowOut()
+	{
+		List<Product> products = ProductDAO.selectAllProducts();
+		assertTrue("should return 4 results", 4 == products.size());
+	}
 }

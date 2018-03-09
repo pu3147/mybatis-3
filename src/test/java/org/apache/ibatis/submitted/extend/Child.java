@@ -15,6 +15,7 @@
  */
 package org.apache.ibatis.submitted.extend;
 
-public class Child extends Parent {
-
+public class Child extends Parent
+{
+	
 }

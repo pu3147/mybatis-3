@@ -17,10 +17,11 @@ package org.apache.ibatis.submitted.usesjava8.multiple_resultsets;
 
 import java.util.List;
 
-public interface Mapper {
-
-  List<List<?>> getUsersAndGroups();
-
-  List<List<?>> multiResultsWithUpdate();
-
+public interface Mapper
+{
+	
+	List<List<?>> getUsersAndGroups();
+	
+	List<List<?>> multiResultsWithUpdate();
+	
 }

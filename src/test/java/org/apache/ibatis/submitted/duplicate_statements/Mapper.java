@@ -19,8 +19,10 @@ import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 
-public interface Mapper {
-
-  List<User> getAllUsers();
-  List<User> getAllUsers(RowBounds rowBounds);
+public interface Mapper
+{
+	
+	List<User> getAllUsers();
+	
+	List<User> getAllUsers(RowBounds rowBounds);
 }

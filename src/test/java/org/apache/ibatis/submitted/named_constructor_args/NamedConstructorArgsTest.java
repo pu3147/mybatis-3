@@ -29,59 +29,69 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class NamedConstructorArgsTest {
-
-  private static SqlSessionFactory sqlSessionFactory;
-
-  @BeforeClass
-  public static void setUp() throws Exception {
-    // create an SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/named_constructor_args/mybatis-config.xml");
-    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-    reader.close();
-
-    Configuration configuration = sqlSessionFactory.getConfiguration();
-    configuration.setUseActualParamName(false);
-    configuration.addMapper(Mapper.class);
-
-    // populate in-memory database
-    SqlSession session = sqlSessionFactory.openSession();
-    Connection conn = session.getConnection();
-    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/named_constructor_args/CreateDB.sql");
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.runScript(reader);
-    conn.close();
-    reader.close();
-    session.close();
-  }
-
-  @Test
-  public void argsWithParamAnnos() {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      Mapper mapper = sqlSession.getMapper(Mapper.class);
-      User user = mapper.mapConstructorWithParamAnnos(1);
-      assertEquals(Integer.valueOf(1), user.getId());
-      assertEquals("User1", user.getName());
-      assertEquals(Long.valueOf(99L), user.getTeam());
-    } finally {
-      sqlSession.close();
-    }
-  }
-
-  @Test
-  public void argsWithParamAnnosXml() {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      Mapper mapper = sqlSession.getMapper(Mapper.class);
-      User user = mapper.mapConstructorWithParamAnnosXml(1);
-      assertEquals(Integer.valueOf(1), user.getId());
-      assertEquals("User1", user.getName());
-      assertEquals(Long.valueOf(99L), user.getTeam());
-    } finally {
-      sqlSession.close();
-    }
-  }
-
+public class NamedConstructorArgsTest
+{
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void setUp() throws Exception
+	{
+		// create an SqlSessionFactory
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/named_constructor_args/mybatis-config.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		reader.close();
+		
+		Configuration configuration = sqlSessionFactory.getConfiguration();
+		configuration.setUseActualParamName(false);
+		configuration.addMapper(Mapper.class);
+		
+		// populate in-memory database
+		SqlSession session = sqlSessionFactory.openSession();
+		Connection conn = session.getConnection();
+		reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/named_constructor_args/CreateDB.sql");
+		ScriptRunner runner = new ScriptRunner(conn);
+		runner.setLogWriter(null);
+		runner.runScript(reader);
+		conn.close();
+		reader.close();
+		session.close();
+	}
+	
+	@Test
+	public void argsWithParamAnnos()
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			Mapper mapper = sqlSession.getMapper(Mapper.class);
+			User user = mapper.mapConstructorWithParamAnnos(1);
+			assertEquals(Integer.valueOf(1), user.getId());
+			assertEquals("User1", user.getName());
+			assertEquals(Long.valueOf(99L), user.getTeam());
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void argsWithParamAnnosXml()
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			Mapper mapper = sqlSession.getMapper(Mapper.class);
+			User user = mapper.mapConstructorWithParamAnnosXml(1);
+			assertEquals(Integer.valueOf(1), user.getId());
+			assertEquals("User1", user.getName());
+			assertEquals(Long.valueOf(99L), user.getTeam());
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
 }

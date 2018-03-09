@@ -17,6 +17,7 @@ package org.apache.ibatis.submitted.dynsql;
 
 import org.apache.ibatis.annotations.Param;
 
-public interface DynSqlMapper {
-  String selectDescription(@Param("p") String p);
+public interface DynSqlMapper
+{
+	String selectDescription(@Param("p") String p);
 }

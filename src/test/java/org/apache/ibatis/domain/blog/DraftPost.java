@@ -15,5 +15,6 @@
  */
 package org.apache.ibatis.domain.blog;
 
-public class DraftPost extends Post {
+public class DraftPost extends Post
+{
 }

@@ -19,12 +19,14 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.Configuration;
 import org.junit.Test;
 
-public class IncludePropertyErrorTest {
-
-  @Test(expected = PersistenceException.class)
-  public void shouldFailForDuplicatedPropertyNames() throws Exception {
-    Configuration configuration = new Configuration();
-    configuration.addMapper(DuplicatedIncludePropertiesMapper.class);
-  }
-
+public class IncludePropertyErrorTest
+{
+	
+	@Test(expected = PersistenceException.class)
+	public void shouldFailForDuplicatedPropertyNames() throws Exception
+	{
+		Configuration configuration = new Configuration();
+		configuration.addMapper(DuplicatedIncludePropertiesMapper.class);
+	}
+	
 }

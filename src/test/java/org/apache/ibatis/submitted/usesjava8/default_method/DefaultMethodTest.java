@@ -29,64 +29,76 @@ import org.apache.ibatis.submitted.usesjava8.default_method.Mapper.SubMapper;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class DefaultMethodTest {
-
-  private static SqlSessionFactory sqlSessionFactory;
-
-  @BeforeClass
-  public static void setUp() throws Exception {
-    // create an SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader(
-        "org/apache/ibatis/submitted/usesjava8/default_method/mybatis-config.xml");
-    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-    reader.close();
-
-    // populate in-memory database
-    SqlSession session = sqlSessionFactory.openSession();
-    Connection conn = session.getConnection();
-    reader = Resources.getResourceAsReader(
-        "org/apache/ibatis/submitted/usesjava8/default_method/CreateDB.sql");
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.runScript(reader);
-    conn.close();
-    reader.close();
-    session.close();
-  }
-
-  @Test
-  public void shouldInvokeDefaultMethod() {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      Mapper mapper = sqlSession.getMapper(Mapper.class);
-      User user = mapper.defaultGetUser(1);
-      assertEquals("User1", user.getName());
-    } finally {
-      sqlSession.close();
-    }
-  }
-
-  @Test
-  public void shouldInvokeDefaultMethodOfSubclass() {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      SubMapper mapper = sqlSession.getMapper(SubMapper.class);
-      User user = mapper.defaultGetUser("User1", 1);
-      assertEquals("User1", user.getName());
-    } finally {
-      sqlSession.close();
-    }
-  }
-
-  @Test
-  public void shouldInvokeDefaultMethodOfPackagePrivateMapper() {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      PackageMapper mapper = sqlSession.getMapper(PackageMapper.class);
-      User user = mapper.defaultGetUser(1);
-      assertEquals("User1", user.getName());
-    } finally {
-      sqlSession.close();
-    }
-  }
+public class DefaultMethodTest
+{
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void setUp() throws Exception
+	{
+		// create an SqlSessionFactory
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/usesjava8/default_method/mybatis-config.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		reader.close();
+		
+		// populate in-memory database
+		SqlSession session = sqlSessionFactory.openSession();
+		Connection conn = session.getConnection();
+		reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/usesjava8/default_method/CreateDB.sql");
+		ScriptRunner runner = new ScriptRunner(conn);
+		runner.setLogWriter(null);
+		runner.runScript(reader);
+		conn.close();
+		reader.close();
+		session.close();
+	}
+	
+	@Test
+	public void shouldInvokeDefaultMethod()
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			Mapper mapper = sqlSession.getMapper(Mapper.class);
+			User user = mapper.defaultGetUser(1);
+			assertEquals("User1", user.getName());
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void shouldInvokeDefaultMethodOfSubclass()
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			SubMapper mapper = sqlSession.getMapper(SubMapper.class);
+			User user = mapper.defaultGetUser("User1", 1);
+			assertEquals("User1", user.getName());
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void shouldInvokeDefaultMethodOfPackagePrivateMapper()
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			PackageMapper mapper = sqlSession.getMapper(PackageMapper.class);
+			User user = mapper.defaultGetUser(1);
+			assertEquals("User1", user.getName());
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
 }

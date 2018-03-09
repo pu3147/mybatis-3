@@ -20,15 +20,14 @@ import org.apache.ibatis.annotations.ConstructorArgs;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.submitted.named_constructor_args.User;
 
-public interface Mapper {
-
-  @ConstructorArgs({
-      @Arg(column = "name", name = "name"),
-      @Arg(id = true, column = "id", name = "userId", javaType = Integer.class)
-  })
-  @Select("select * from users where id = #{id}")
-  User mapConstructorWithoutParamAnnos(Integer id);
-
-  User mapConstructorWithoutParamAnnosXml(Integer id);
-
+public interface Mapper
+{
+	
+	@ConstructorArgs(
+	{ @Arg(column = "name", name = "name"), @Arg(id = true, column = "id", name = "userId", javaType = Integer.class) })
+	@Select("select * from users where id = #{id}")
+	User mapConstructorWithoutParamAnnos(Integer id);
+	
+	User mapConstructorWithoutParamAnnosXml(Integer id);
+	
 }

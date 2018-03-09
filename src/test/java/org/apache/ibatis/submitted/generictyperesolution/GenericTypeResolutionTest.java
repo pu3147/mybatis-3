@@ -28,58 +28,68 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class GenericTypeResolutionTest {
-
-  private static SqlSessionFactory sqlSessionFactory;
-
-  @BeforeClass
-  public static void setUp() throws Exception {
-    // create an SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/generictyperesolution/mybatis-config.xml");
-    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-    reader.close();
-
-    // populate in-memory database
-    SqlSession session = sqlSessionFactory.openSession();
-    Connection conn = session.getConnection();
-    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/generictyperesolution/CreateDB.sql");
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.runScript(reader);
-    conn.close();
-    reader.close();
-    session.close();
-  }
-
-  @Test
-  public void shouldGetAUser() {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      Mapper mapper = sqlSession.getMapper(Mapper.class);
-      User criteria = new User();
-      criteria.setId(1);
-      User result = mapper.getUser(criteria);
-      assertEquals("User1", result.getName());
-      assertEquals(Integer.valueOf(12), result.getFld1());
-    } finally {
-      sqlSession.close();
-    }
-  }
-
-  @Test
-  public void shouldInsertAUser() {
-    SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      Mapper mapper = sqlSession.getMapper(Mapper.class);
-      User user = new User();
-      user.setName("User2");
-      user.fld2 =56;
-      mapper.insertUser(user);
-      User result = mapper.getUserByName("User2");
-      assertNotNull(result);
-    } finally {
-      sqlSession.close();
-    }
-  }
-
+public class GenericTypeResolutionTest
+{
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void setUp() throws Exception
+	{
+		// create an SqlSessionFactory
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/generictyperesolution/mybatis-config.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		reader.close();
+		
+		// populate in-memory database
+		SqlSession session = sqlSessionFactory.openSession();
+		Connection conn = session.getConnection();
+		reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/generictyperesolution/CreateDB.sql");
+		ScriptRunner runner = new ScriptRunner(conn);
+		runner.setLogWriter(null);
+		runner.runScript(reader);
+		conn.close();
+		reader.close();
+		session.close();
+	}
+	
+	@Test
+	public void shouldGetAUser()
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			Mapper mapper = sqlSession.getMapper(Mapper.class);
+			User criteria = new User();
+			criteria.setId(1);
+			User result = mapper.getUser(criteria);
+			assertEquals("User1", result.getName());
+			assertEquals(Integer.valueOf(12), result.getFld1());
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void shouldInsertAUser()
+	{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			Mapper mapper = sqlSession.getMapper(Mapper.class);
+			User user = new User();
+			user.setName("User2");
+			user.fld2 = 56;
+			mapper.insertUser(user);
+			User result = mapper.getUserByName("User2");
+			assertNotNull(result);
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
 }

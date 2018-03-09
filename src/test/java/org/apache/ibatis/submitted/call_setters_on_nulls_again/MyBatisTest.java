@@ -25,27 +25,33 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class MyBatisTest {
-
-  private static SqlSessionFactory sqlSessionFactory;
-
-  @BeforeClass
-  public static void setUp() throws Exception {
-    // create an SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/call_setters_on_nulls_again/mybatis-config.xml");
-    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-    reader.close();
-  }
-
-  @Test
-  public void test() {
-    SqlSession session = sqlSessionFactory.openSession();
-    try {
-      ParentBean parentBean = session.selectOne("test");
-      Assert.assertEquals("p1", parentBean.getName());
-    } finally {
-      session.close();
-    }
-  }
-
+public class MyBatisTest
+{
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void setUp() throws Exception
+	{
+		// create an SqlSessionFactory
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/call_setters_on_nulls_again/mybatis-config.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		reader.close();
+	}
+	
+	@Test
+	public void test()
+	{
+		SqlSession session = sqlSessionFactory.openSession();
+		try
+		{
+			ParentBean parentBean = session.selectOne("test");
+			Assert.assertEquals("p1", parentBean.getName());
+		}
+		finally
+		{
+			session.close();
+		}
+	}
+	
 }

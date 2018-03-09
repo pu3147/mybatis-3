@@ -22,13 +22,14 @@ import org.apache.ibatis.mapping.StatementType;
 
 import java.util.List;
 
-public interface Mapper {
-
-  List<OrderDetail> getOrderDetailsWithHeaders();
-
-  @Select(value = "{ call GetOrderDetailsAndHeaders() }")
-  @ResultMap("orderDetailResultMap")
-  @Options(statementType= StatementType.CALLABLE, resultSets="orderDetailResultSet,orderHeaderResultSet")
-  List<OrderDetail> getOrderDetailsWithHeadersAnnotationBased();
-
+public interface Mapper
+{
+	
+	List<OrderDetail> getOrderDetailsWithHeaders();
+	
+	@Select(value = "{ call GetOrderDetailsAndHeaders() }")
+	@ResultMap("orderDetailResultMap")
+	@Options(statementType = StatementType.CALLABLE, resultSets = "orderDetailResultSet,orderHeaderResultSet")
+	List<OrderDetail> getOrderDetailsWithHeadersAnnotationBased();
+	
 }

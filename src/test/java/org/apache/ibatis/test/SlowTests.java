@@ -16,5 +16,6 @@
 
 package org.apache.ibatis.test;
 
-public interface SlowTests {
+public interface SlowTests
+{
 }

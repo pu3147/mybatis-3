@@ -34,59 +34,66 @@ import java.util.List;
 import static org.junit.Assert.assertNotNull;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FlushTest {
-    private static SqlSessionFactory sqlSessionFactory;
-
-    @BeforeClass
-    public static void setup() throws Exception {
-        DataSource dataSource = BaseDataTest.createBlogDataSource();
-        TransactionFactory transactionFactory = new JdbcTransactionFactory();
-        Environment environment = new Environment("Production", transactionFactory, dataSource);
-        Configuration configuration = new Configuration(environment);
-        configuration.setDefaultExecutorType(ExecutorType.BATCH);
-        configuration.getTypeAliasRegistry().registerAlias(Post.class);
-        configuration.getTypeAliasRegistry().registerAlias(Author.class);
-        configuration.addMapper(BoundAuthorMapper.class);
-        sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
-    }
-
-    @Test
-    public void invokeFlushStatementsViaMapper() {
-
-        SqlSession session = sqlSessionFactory.openSession();
-
-        try {
-
-            BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
-            Author author = new Author(-1, "cbegin", "******", "cbegin@nowhere.com", "N/A", Section.NEWS);
-            List<Integer> ids = new ArrayList<Integer>();
-            mapper.insertAuthor(author);
-            ids.add(author.getId());
-            mapper.insertAuthor(author);
-            ids.add(author.getId());
-            mapper.insertAuthor(author);
-            ids.add(author.getId());
-            mapper.insertAuthor(author);
-            ids.add(author.getId());
-            mapper.insertAuthor(author);
-            ids.add(author.getId());
-
-            // test
-            List<BatchResult> results = mapper.flush();
-
-            assertThat(results.size()).isEqualTo(1);
-            assertThat(results.get(0).getUpdateCounts().length).isEqualTo(ids.size());
-
-            for (int id : ids) {
-                Author selectedAuthor = mapper.selectAuthor(id);
-                assertNotNull(id + " is not found.", selectedAuthor);
-            }
-
-            session.rollback();
-        } finally {
-            session.close();
-        }
-
-    }
-
+public class FlushTest
+{
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void setup() throws Exception
+	{
+		DataSource dataSource = BaseDataTest.createBlogDataSource();
+		TransactionFactory transactionFactory = new JdbcTransactionFactory();
+		Environment environment = new Environment("Production", transactionFactory, dataSource);
+		Configuration configuration = new Configuration(environment);
+		configuration.setDefaultExecutorType(ExecutorType.BATCH);
+		configuration.getTypeAliasRegistry().registerAlias(Post.class);
+		configuration.getTypeAliasRegistry().registerAlias(Author.class);
+		configuration.addMapper(BoundAuthorMapper.class);
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
+	}
+	
+	@Test
+	public void invokeFlushStatementsViaMapper()
+	{
+		
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try
+		{
+			
+			BoundAuthorMapper mapper = session.getMapper(BoundAuthorMapper.class);
+			Author author = new Author(-1, "cbegin", "******", "cbegin@nowhere.com", "N/A", Section.NEWS);
+			List<Integer> ids = new ArrayList<Integer>();
+			mapper.insertAuthor(author);
+			ids.add(author.getId());
+			mapper.insertAuthor(author);
+			ids.add(author.getId());
+			mapper.insertAuthor(author);
+			ids.add(author.getId());
+			mapper.insertAuthor(author);
+			ids.add(author.getId());
+			mapper.insertAuthor(author);
+			ids.add(author.getId());
+			
+			// test
+			List<BatchResult> results = mapper.flush();
+			
+			assertThat(results.size()).isEqualTo(1);
+			assertThat(results.get(0).getUpdateCounts().length).isEqualTo(ids.size());
+			
+			for (int id : ids)
+			{
+				Author selectedAuthor = mapper.selectAuthor(id);
+				assertNotNull(id + " is not found.", selectedAuthor);
+			}
+			
+			session.rollback();
+		}
+		finally
+		{
+			session.close();
+		}
+		
+	}
+	
 }

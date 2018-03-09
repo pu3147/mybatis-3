@@ -15,10 +15,10 @@
  */
 package org.apache.ibatis.submitted.map_class_name_conflict;
 
-
-public interface PersonMapper {
-
-  public Person get(Long id);
-
-  public void insert(Person person);
+public interface PersonMapper
+{
+	
+	public Person get(Long id);
+	
+	public void insert(Person person);
 }

@@ -20,9 +20,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Select;
 
-@CacheNamespace(blocking=true)
-public interface PersonMapper {
-
-  @Select("select id, firstname, lastname from person")
-  public List<Person> findAll();
+@CacheNamespace(blocking = true)
+public interface PersonMapper
+{
+	
+	@Select("select id, firstname, lastname from person")
+	public List<Person> findAll();
 }

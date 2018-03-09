@@ -17,11 +17,13 @@ package org.apache.ibatis.submitted.usesjava8.default_method;
 
 import org.apache.ibatis.annotations.Select;
 
-interface PackageMapper {
-  @Select("select * from users where id = #{id}")
-  User getUserById(Integer id);
-
-  default User defaultGetUser(Object... args) {
-    return getUserById((Integer) args[0]);
-  }
+interface PackageMapper
+{
+	@Select("select * from users where id = #{id}")
+	User getUserById(Integer id);
+	
+	default User defaultGetUser(Object... args)
+	{
+		return getUserById((Integer) args[0]);
+	}
 }

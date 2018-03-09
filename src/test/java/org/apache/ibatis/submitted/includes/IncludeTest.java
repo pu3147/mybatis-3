@@ -29,49 +29,59 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Assert;
 
-public class IncludeTest {
-
-  private static SqlSessionFactory sqlSessionFactory;
-
-  @BeforeClass
-  public static void setUp() throws Exception {
-    // create a SqlSessionFactory
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/includes/MapperConfig.xml");
-    sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-    reader.close();
-
-    // populate in-memory database
-    SqlSession session = sqlSessionFactory.openSession();
-    Connection conn = session.getConnection();
-    reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/includes/CreateDB.sql");
-    ScriptRunner runner = new ScriptRunner(conn);
-    runner.setLogWriter(null);
-    runner.runScript(reader);
-    conn.close();
-    reader.close();
-    session.close();
-  }
-
-  @Test
-  public void testIncludes() throws Exception {
-    final SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      final Integer result = sqlSession.selectOne("org.apache.ibatis.submitted.includes.mapper.selectWithProperty");
-      Assert.assertEquals(Integer.valueOf(1), result);
-    } finally {
-      sqlSession.close();
-    }
-  }
-  
-  @Test
-  public void testParametrizedIncludes() throws Exception {
-    final SqlSession sqlSession = sqlSessionFactory.openSession();
-    try {
-      final Map<String, Object> result = sqlSession.selectOne("org.apache.ibatis.submitted.includes.mapper.select");
-      //Assert.assertEquals(Integer.valueOf(1), result);
-    } finally {
-      sqlSession.close();
-    }
-  }
-  
+public class IncludeTest
+{
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	@BeforeClass
+	public static void setUp() throws Exception
+	{
+		// create a SqlSessionFactory
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/includes/MapperConfig.xml");
+		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		reader.close();
+		
+		// populate in-memory database
+		SqlSession session = sqlSessionFactory.openSession();
+		Connection conn = session.getConnection();
+		reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/includes/CreateDB.sql");
+		ScriptRunner runner = new ScriptRunner(conn);
+		runner.setLogWriter(null);
+		runner.runScript(reader);
+		conn.close();
+		reader.close();
+		session.close();
+	}
+	
+	@Test
+	public void testIncludes() throws Exception
+	{
+		final SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			final Integer result = sqlSession.selectOne("org.apache.ibatis.submitted.includes.mapper.selectWithProperty");
+			Assert.assertEquals(Integer.valueOf(1), result);
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
+	@Test
+	public void testParametrizedIncludes() throws Exception
+	{
+		final SqlSession sqlSession = sqlSessionFactory.openSession();
+		try
+		{
+			final Map<String, Object> result = sqlSession.selectOne("org.apache.ibatis.submitted.includes.mapper.select");
+			// Assert.assertEquals(Integer.valueOf(1), result);
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+	}
+	
 }

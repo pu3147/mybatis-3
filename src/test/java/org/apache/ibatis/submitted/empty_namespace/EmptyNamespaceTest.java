@@ -22,14 +22,19 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
-public class EmptyNamespaceTest {
-  @Test(expected = PersistenceException.class)
-  public void testEmptyNamespace() throws Exception {
-    Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/empty_namespace/ibatisConfig.xml");
-    try {
-      new SqlSessionFactoryBuilder().build(reader);
-    } finally {
-      reader.close();
-    }
-  }
+public class EmptyNamespaceTest
+{
+	@Test(expected = PersistenceException.class)
+	public void testEmptyNamespace() throws Exception
+	{
+		Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/empty_namespace/ibatisConfig.xml");
+		try
+		{
+			new SqlSessionFactoryBuilder().build(reader);
+		}
+		finally
+		{
+			reader.close();
+		}
+	}
 }

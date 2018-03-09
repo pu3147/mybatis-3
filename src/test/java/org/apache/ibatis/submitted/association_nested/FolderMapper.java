@@ -22,8 +22,9 @@ import java.util.List;
 /**
  * @author Loïc Guerrin <guerrin@fullsix.com>
  */
-public interface FolderMapper {
-
-  List<FolderFlatTree> findWithSubFolders(@Param("name") String name);
-
+public interface FolderMapper
+{
+	
+	List<FolderFlatTree> findWithSubFolders(@Param("name") String name);
+	
 }

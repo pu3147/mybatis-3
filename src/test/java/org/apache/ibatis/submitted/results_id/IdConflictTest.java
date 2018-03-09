@@ -21,14 +21,15 @@ import org.junit.Test;
 import static com.googlecode.catchexception.apis.BDDCatchException.*;
 import static org.assertj.core.api.BDDAssertions.then;
 
-public class IdConflictTest {
-
-  @Test
-  public void shouldFailOnDuplicatedId() throws Exception {
-    Configuration configuration = new Configuration();
-    when(configuration).addMapper(IdConflictMapper.class);
-    then(caughtException()).isInstanceOf(RuntimeException.class)
-      .hasMessage("Result Maps collection already contains value for org.apache.ibatis.submitted.results_id.IdConflictMapper.userResult");
-  }
-
+public class IdConflictTest
+{
+	
+	@Test
+	public void shouldFailOnDuplicatedId() throws Exception
+	{
+		Configuration configuration = new Configuration();
+		when(configuration).addMapper(IdConflictMapper.class);
+		then(caughtException()).isInstanceOf(RuntimeException.class).hasMessage("Result Maps collection already contains value for org.apache.ibatis.submitted.results_id.IdConflictMapper.userResult");
+	}
+	
 }

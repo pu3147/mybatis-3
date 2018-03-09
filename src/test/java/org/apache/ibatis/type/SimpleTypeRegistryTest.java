@@ -23,21 +23,32 @@ import java.util.HashMap;
 import org.apache.ibatis.domain.misc.RichType;
 import org.junit.Test;
 
-public class SimpleTypeRegistryTest {
-
-  @Test
-  public void shouldTestIfClassIsSimpleTypeAndReturnTrue() {
-    assertTrue(SimpleTypeRegistry.isSimpleType(String.class));
-  }
-
-  @Test
-  public void shouldTestIfClassIsSimpleTypeAndReturnFalse() {
-    assertFalse(SimpleTypeRegistry.isSimpleType(RichType.class));
-  }
-
-  @Test
-  public void shouldTestIfMapIsSimpleTypeAndReturnFalse() {
-    assertFalse(SimpleTypeRegistry.isSimpleType(HashMap.class)); // see issue #165, a Map is not a simple type
-  }
-
+public class SimpleTypeRegistryTest
+{
+	
+	@Test
+	public void shouldTestIfClassIsSimpleTypeAndReturnTrue()
+	{
+		assertTrue(SimpleTypeRegistry.isSimpleType(String.class));
+	}
+	
+	@Test
+	public void shouldTestIfClassIsSimpleTypeAndReturnFalse()
+	{
+		assertFalse(SimpleTypeRegistry.isSimpleType(RichType.class));
+	}
+	
+	@Test
+	public void shouldTestIfMapIsSimpleTypeAndReturnFalse()
+	{
+		assertFalse(SimpleTypeRegistry.isSimpleType(HashMap.class)); // see
+																		// issue
+																		// #165,
+																		// a Map
+																		// is
+																		// not a
+																		// simple
+																		// type
+	}
+	
 }

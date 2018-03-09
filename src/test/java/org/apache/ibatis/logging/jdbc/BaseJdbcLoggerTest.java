@@ -28,31 +28,38 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BaseJdbcLoggerTest {
-
-  @Mock
-  Log log;
-  @Mock
-  Array array;
-  BaseJdbcLogger logger;
-
-  @Before
-  public void setUp() throws Exception {
-    logger = new BaseJdbcLogger(log, 1) {
-    };
-  }
-
-  @Test
-  public void shouldDescribePrimitiveArrayParameter() throws Exception {
-    logger.setColumn("1", array);
-    when(array.getArray()).thenReturn(new int[] { 1, 2, 3 });
-    assertThat(logger.getParameterValueString()).startsWith("[1, 2, 3]");
-  }
-
-  @Test
-  public void shouldDescribeObjectArrayParameter() throws Exception {
-    logger.setColumn("1", array);
-    when(array.getArray()).thenReturn(new String[] { "one", "two", "three" });
-    assertThat(logger.getParameterValueString()).startsWith("[one, two, three]");
-  }
+public class BaseJdbcLoggerTest
+{
+	
+	@Mock
+	Log log;
+	@Mock
+	Array array;
+	BaseJdbcLogger logger;
+	
+	@Before
+	public void setUp() throws Exception
+	{
+		logger = new BaseJdbcLogger(log, 1)
+		{
+		};
+	}
+	
+	@Test
+	public void shouldDescribePrimitiveArrayParameter() throws Exception
+	{
+		logger.setColumn("1", array);
+		when(array.getArray()).thenReturn(new int[]
+		{ 1, 2, 3 });
+		assertThat(logger.getParameterValueString()).startsWith("[1, 2, 3]");
+	}
+	
+	@Test
+	public void shouldDescribeObjectArrayParameter() throws Exception
+	{
+		logger.setColumn("1", array);
+		when(array.getArray()).thenReturn(new String[]
+		{ "one", "two", "three" });
+		assertThat(logger.getParameterValueString()).startsWith("[one, two, three]");
+	}
 }
