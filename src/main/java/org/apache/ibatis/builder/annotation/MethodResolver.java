@@ -20,17 +20,20 @@ import java.lang.reflect.Method;
 /**
  * @author Eduardo Macarron
  */
-public class MethodResolver {
-  private final MapperAnnotationBuilder annotationBuilder;
-  private final Method method;
-
-  public MethodResolver(MapperAnnotationBuilder annotationBuilder, Method method) {
-    this.annotationBuilder = annotationBuilder;
-    this.method = method;
-  }
-
-  public void resolve() {
-    annotationBuilder.parseStatement(method);
-  }
-
+public class MethodResolver
+{
+	private final MapperAnnotationBuilder annotationBuilder;
+	private final Method method;
+	
+	public MethodResolver(MapperAnnotationBuilder annotationBuilder, Method method)
+	{
+		this.annotationBuilder = annotationBuilder;
+		this.method = method;
+	}
+	
+	public void resolve()
+	{
+		annotationBuilder.parseStatement(method);
+	}
+	
 }

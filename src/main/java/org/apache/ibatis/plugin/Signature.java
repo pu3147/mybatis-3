@@ -26,10 +26,11 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({})
-public @interface Signature {
-  Class<?> type();
-
-  String method();
-
-  Class<?>[] args();
+public @interface Signature
+{
+	Class<?> type();
+	
+	String method();
+	
+	Class<?>[] args();
 }

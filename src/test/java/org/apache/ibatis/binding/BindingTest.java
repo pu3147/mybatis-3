@@ -842,7 +842,7 @@ public class BindingTest
 		{
 			
 			// Create another mapper instance with a method cache we can test
-				// against:
+			// against:
 			final MapperProxyFactory<BoundBlogMapper> mapperProxyFactory = new MapperProxyFactory<BoundBlogMapper>(BoundBlogMapper.class);
 			assertEquals(BoundBlogMapper.class, mapperProxyFactory.getMapperInterface());
 			final BoundBlogMapper mapper = mapperProxyFactory.newInstance(session);

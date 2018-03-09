@@ -23,11 +23,11 @@ import java.sql.SQLException;
  *
  * @author Clinton Begin
  */
-public interface ParameterHandler {
-
-  Object getParameterObject();
-
-  void setParameters(PreparedStatement ps)
-      throws SQLException;
-
+public interface ParameterHandler
+{
+	
+	Object getParameterObject();
+	
+	void setParameters(PreparedStatement ps) throws SQLException;
+	
 }

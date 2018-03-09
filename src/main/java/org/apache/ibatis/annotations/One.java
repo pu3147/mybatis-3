@@ -28,9 +28,10 @@ import org.apache.ibatis.mapping.FetchType;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({})
-public @interface One {
-  String select() default "";
-
-  FetchType fetchType() default FetchType.DEFAULT;
-
+public @interface One
+{
+	String select() default "";
+	
+	FetchType fetchType() default FetchType.DEFAULT;
+	
 }

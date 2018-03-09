@@ -26,12 +26,13 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({})
-public @interface Case {
-  String value();
-
-  Class<?> type();
-
-  Result[] results() default {};
-
-  Arg[] constructArgs() default {};
+public @interface Case
+{
+	String value();
+	
+	Class<?> type();
+	
+	Result[] results() default {};
+	
+	Arg[] constructArgs() default {};
 }

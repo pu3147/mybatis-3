@@ -27,8 +27,9 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface DeleteProvider {
-  Class<?> type();
-
-  String method();
+public @interface DeleteProvider
+{
+	Class<?> type();
+	
+	String method();
 }

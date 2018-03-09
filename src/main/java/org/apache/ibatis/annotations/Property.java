@@ -30,13 +30,15 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({})
-public @interface Property {
-  /**
-   * A target property name
-   */
-  String name();
-  /**
-   * A property value or placeholder
-   */
-  String value();
+public @interface Property
+{
+	/**
+	 * A target property name
+	 */
+	String name();
+	
+	/**
+	 * A property value or placeholder
+	 */
+	String value();
 }

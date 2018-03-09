@@ -27,6 +27,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Insert {
-  String[] value();
+public @interface Insert
+{
+	String[] value();
 }

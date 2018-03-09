@@ -27,10 +27,12 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Results {
-  /**
-   * The name of the result map.
-   */
-  String id() default "";
-  Result[] value() default {};
+public @interface Results
+{
+	/**
+	 * The name of the result map.
+	 */
+	String id() default "";
+	
+	Result[] value() default {};
 }

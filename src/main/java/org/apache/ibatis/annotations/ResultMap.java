@@ -27,6 +27,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface ResultMap {
-  String[] value();
+public @interface ResultMap
+{
+	String[] value();
 }

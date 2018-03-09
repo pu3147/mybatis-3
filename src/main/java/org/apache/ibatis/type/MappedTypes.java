@@ -27,6 +27,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface MappedTypes {
-  Class<?>[] value();
+public @interface MappedTypes
+{
+	Class<?>[] value();
 }

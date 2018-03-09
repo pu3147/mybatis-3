@@ -27,7 +27,9 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface MappedJdbcTypes {
-  JdbcType[] value();
-  boolean includeNullJdbcType() default false;
+public @interface MappedJdbcTypes
+{
+	JdbcType[] value();
+	
+	boolean includeNullJdbcType() default false;
 }

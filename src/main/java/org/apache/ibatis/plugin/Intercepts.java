@@ -27,7 +27,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Intercepts {
-  Signature[] value();
+public @interface Intercepts
+{
+	Signature[] value();
 }
-

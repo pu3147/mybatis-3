@@ -30,20 +30,21 @@ import org.apache.ibatis.type.UnknownTypeHandler;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({})
-public @interface Result {
-  boolean id() default false;
-
-  String column() default "";
-
-  String property() default "";
-
-  Class<?> javaType() default void.class;
-
-  JdbcType jdbcType() default JdbcType.UNDEFINED;
-
-  Class<? extends TypeHandler> typeHandler() default UnknownTypeHandler.class;
-
-  One one() default @One;
-
-  Many many() default @Many;
+public @interface Result
+{
+	boolean id() default false;
+	
+	String column() default "";
+	
+	String property() default "";
+	
+	Class<?> javaType() default void.class;
+	
+	JdbcType jdbcType() default JdbcType.UNDEFINED;
+	
+	Class<? extends TypeHandler> typeHandler() default UnknownTypeHandler.class;
+	
+	One one() default @One;
+	
+	Many many() default @Many;
 }

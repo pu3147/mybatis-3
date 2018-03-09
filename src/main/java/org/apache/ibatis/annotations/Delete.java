@@ -27,7 +27,8 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Delete {
-  //	TODO
-  String[] value();
+public @interface Delete
+{
+	// TODO
+	String[] value();
 }

@@ -21,10 +21,11 @@ import javax.sql.DataSource;
 /**
  * @author Clinton Begin
  */
-public interface DataSourceFactory {
-
-  void setProperties(Properties props);
-
-  DataSource getDataSource();
-
+public interface DataSourceFactory
+{
+	
+	void setProperties(Properties props);
+	
+	DataSource getDataSource();
+	
 }

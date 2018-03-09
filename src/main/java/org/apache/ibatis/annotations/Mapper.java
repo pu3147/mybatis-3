@@ -34,7 +34,9 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 @Retention(RUNTIME)
-@Target({ TYPE, METHOD, FIELD, PARAMETER })
-public @interface Mapper {
-  // Interface Mapper
+@Target(
+{ TYPE, METHOD, FIELD, PARAMETER })
+public @interface Mapper
+{
+	// Interface Mapper
 }

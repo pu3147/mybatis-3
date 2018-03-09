@@ -29,6 +29,8 @@ import java.lang.annotation.Target;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.CONSTRUCTOR})
-public @interface AutomapConstructor {
+@Target(
+{ ElementType.CONSTRUCTOR })
+public @interface AutomapConstructor
+{
 }

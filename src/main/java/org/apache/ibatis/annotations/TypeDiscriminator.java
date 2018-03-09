@@ -31,14 +31,15 @@ import org.apache.ibatis.type.UnknownTypeHandler;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface TypeDiscriminator {
-  String column();
-
-  Class<?> javaType() default void.class;
-
-  JdbcType jdbcType() default JdbcType.UNDEFINED;
-
-  Class<? extends TypeHandler> typeHandler() default UnknownTypeHandler.class;
-
-  Case[] cases();
+public @interface TypeDiscriminator
+{
+	String column();
+	
+	Class<?> javaType() default void.class;
+	
+	JdbcType jdbcType() default JdbcType.UNDEFINED;
+	
+	Class<? extends TypeHandler> typeHandler() default UnknownTypeHandler.class;
+	
+	Case[] cases();
 }

@@ -27,6 +27,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface Lang {
-  Class<?> value();
+public @interface Lang
+{
+	Class<?> value();
 }
